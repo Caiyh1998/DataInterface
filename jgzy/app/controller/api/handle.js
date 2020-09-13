@@ -113,9 +113,24 @@ class Handle extends Controller {
         const userid = query.uid
         const variation = query.variation
         const method = query.method
-        const remarks  = query.remarks
+        const remarks = query.remarks
 
         const message = await ctx.service.handle.updateIntegral(userid, variation, method, remarks);
+        ctx.body = {
+            message: message,
+            success: false
+        };
+        if (message === '操作成功') ctx.body.success = true
+        else ctx.body.success = false
+    }
+
+    async updateRecordStatus() {
+        const ctx = this.ctx;
+        const query = ctx.query
+
+        const rid = query.rid;
+
+        const message = await ctx.service.handle.updateRecordStatus(rid);
         ctx.body = {
             message: message,
             success: false

@@ -148,7 +148,7 @@ class Handle extends Service {
             const user = await conn.get('user', {
                 userid: userid
             })
-            if(method === 'add'){
+            if (method === 'add') {
                 await conn.query('update user set integral = (integral + ?) where userid = ?', [variation, userid])
                 await conn.insert('record', {
                     type: '积分转入',
@@ -161,7 +161,7 @@ class Handle extends Service {
                     balance: Number(user.Integral) + Number(variation),
                     status: '完成'
                 })
-            } else if (method === 'sub'){
+            } else if (method === 'sub') {
                 await conn.query('update user set integral = (integral - ?) where userid = ?', [variation, userid])
                 await conn.insert('record', {
                     type: '积分转出',
@@ -175,6 +175,25 @@ class Handle extends Service {
                     status: '完成'
                 })
             }
+            await conn.commit();  //提交事务
+            return "操作成功"
+        } catch (err) {
+            await conn.rollback();//回滚事务
+            throw err;
+            return "操作失败"
+        }
+    }
+
+    async updateRecordStatus(rid) {
+        const conn = await this.app.mysql.beginTransaction();
+        try {
+            await conn.update('record', {
+                Status: '完成',
+            }, {
+                where: {
+                    RecordID: rid
+                }
+            })
             await conn.commit();  //提交事务
             return "操作成功"
         } catch (err) {

@@ -8,11 +8,12 @@ module.exports = app => {
   // router.get('/', controller.home.index);
 
   const checkToken = app.middleware.checkToken
+  const checkTokenAdmin = app.middleware.checkTokenAdmin
 
   // user api
   // app.get('/api/user/:id', 'api.user.getByID');
-  app.get('/api/user', 'api.user.getAll');
-  app.get('/api/user/search', 'api.user.search');
+  app.get('/api/user', checkTokenAdmin, 'api.user.getAll');
+  app.get('/api/user/search', checkTokenAdmin, 'api.user.search');
   app.post('/api/login/user', 'api.login.user');
   app.post('/api/register/user', 'api.register.user');
 
@@ -28,25 +29,26 @@ module.exports = app => {
   // record api
   app.get('/api/record/data', checkToken, 'api.record.getBy')
   app.get('/api/record/search', checkToken, 'api.record.search')
-  app.get('/api/record/get', 'api.record.get')
-  app.get('/api/record/searchAll', 'api.record.searchAll')
+  app.get('/api/record/get', checkTokenAdmin, 'api.record.get')
+  app.get('/api/record/searchAll', checkTokenAdmin, 'api.record.searchAll')
 
   // admin api
-  // app.post('/api/login/admin', 'api.login.admin');
+  app.post('/api/login/admin', 'api.login.admin');
 
   // handle api
   app.get('/api/handle/send', checkToken, 'api.handle.sendIntegral')
   app.get('/api/handle/buyone', checkToken, 'api.handle.buyone')
+  app.get('/api/handle/updateRecordStatus', checkTokenAdmin, 'api.handle.updateRecordStatus')
   app.post('/api/handle/update', checkToken, 'api.handle.update')
   app.post('/api/handle/updatePassword', checkToken, 'api.handle.updatePassword')
-  app.post('/api/handle/updateIntegral', 'api.handle.updateIntegral')
+  app.post('/api/handle/updateIntegral', checkTokenAdmin, 'api.handle.updateIntegral')
 
   //game api
   app.get('/api/game/data', checkToken, 'api.game.get')
   app.get('/api/game/signUp', checkToken, 'api.game.signUp')
-  app.get('/api/game/create', 'api.game.create')
-  app.get('/api/game/delete', 'api.game.delete')
-  app.get('/api/game/get', 'api.game.get')
+  app.get('/api/game/create', checkTokenAdmin, 'api.game.create')
+  app.get('/api/game/delete', checkTokenAdmin, 'api.game.delete')
+  app.get('/api/game/get', checkTokenAdmin, 'api.game.get')
 
   //other
   // app.get('/api/sockjs-node/info', 'api.other.get')

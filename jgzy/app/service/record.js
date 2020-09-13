@@ -3,7 +3,7 @@
 const Service = require('egg').Service;
 
 class Record extends Service {
-    async get(status = 'all', page = 1, pageSize = 30) {
+    async get(status = 'all', page = 1, pageSize = 3) {
         let list = null
         if (status === 'all'){
             list = await this.app.mysql.select('record', {
@@ -76,7 +76,7 @@ class Record extends Service {
         return list
     }
 
-    async searchAll(search, page = 1, pageSize = 30) {
+    async searchAll(search, page = 1, pageSize = 3) {
         const index = page * pageSize - pageSize
         const search_sql = '%'+ search + '%'
         const list = await this.app.mysql.query(

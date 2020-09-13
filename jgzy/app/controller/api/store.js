@@ -16,7 +16,7 @@ class Store extends Controller {
             ctx.body = {
                 data: list,
                 success: true,
-                imgsrc: "http://localhost:7001/public/JGZY_DATA/STORE_IMG/"
+                imgsrc: "http://47.93.49.16:7001/public/JGZY_DATA/STORE_IMG/"
             }
         }catch (e) {
             console.log(e);

@@ -43,8 +43,9 @@ module.exports = appInfo => {
       user: 'root',
       // 密码
       password: 'Mm17793513291.',
+      // password: 'root',
       // 数据库名
-      database: 'jgzy_v3',
+      database: 'JGZY_V3',
       //
       charset: 'utf8mb4'
     },

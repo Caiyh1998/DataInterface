@@ -17,11 +17,11 @@ class Home extends Controller {
                 data: {
                     banner: {
                         list: [{
-                            image: "http://localhost:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg",
-                            link: "http://localhost:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg"
+                            image: "http://47.93.49.16:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg",
+                            link: "http://47.93.49.16:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg"
                         },{
-                            image: "http://localhost:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg",
-                            link: "http://localhost:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg"
+                            image: "http://47.93.49.16:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg",
+                            link: "http://47.93.49.16:7001/public/JGZY_DATA/HOME_IMG/banner/banner01.jpeg"
                         }]
                     },
                     top3: {
@@ -32,7 +32,7 @@ class Home extends Controller {
                 returnMessage: null,
                 success: true
             }
-            ctx.body.data.imgsrc = "http://localhost:7001/public/JGZY_DATA/STORE_IMG/"
+            ctx.body.data.imgsrc = "http://47.93.49.16:7001/public/JGZY_DATA/STORE_IMG/"
         }catch (e) {
             console.log(e);
             ctx.throw(500, 'service error');
